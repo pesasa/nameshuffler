@@ -7,7 +7,9 @@
 ;(function($){
 
     var Shuffler = function(place, options){
+        options = $.extend(true, {}, Shuffler.defaults, options);
         this.place = $(place);
+        this.autoshuffle = !!options.autoshuffle;
         this.setAttrs();
         this.setStyles();
         this.initHandlers();
@@ -19,7 +21,8 @@
     };
     
     Shuffler.prototype.show = function(){
-        this.place.html(Shuffler.templates.html);
+        var html = (this.autoshuffle ? Shuffler.templates.htmlautoshuffle : Shuffler.templates.html);
+        this.place.html(html);
     };
     
     Shuffler.prototype.updateData = function(){
@@ -38,10 +41,12 @@
         this.randomGroup();
     };
     
-    Shuffler.prototype.randomGroup = function(){
+    Shuffler.prototype.randomGroup = function(shuffle){
         var groups = [];
         var names = this.names.slice();
-        names = names.sort(function(a,b){return Math.random()- 0.5;});
+        if (this.autoshuffle || shuffle){
+            names = names.sort(function(a,b){return Math.random()- 0.5;});
+        };
         for (var i = 0; i < this.groupCount; i++) {
             groups.push([]);
         };
@@ -114,6 +119,11 @@
             shuff.lastSet = 'groupSize';
             shuff.updateData();
         });
+        this.place.on('click', '.nameshuffler-outputarea .nameshuffler-groupshuffle', function(event){
+            event.stopPropagation();
+            event.preventDefault();
+            shuff.randomGroup(true);
+        });
     };
     
     Shuffler.prototype.addField = function(index){
@@ -133,6 +143,10 @@
         };
     };
     
+    Shuffler.defaults = {
+        autoshuffle: false
+    }
+    
     Shuffler.style = [
         '.nameshuffler-wrapper {border: 1px solid #777; border-radius: 4px; padding: 0.5em; background-color: #eee;}',
         '.nameshuffler-wrapper .nameshuffler-content {display: flex; flex-flow: col nowrap; align-items: stretch;}',
@@ -148,6 +162,22 @@
     
     Shuffler.templates = {
         html: [
+            '<h1>Ryhmittelijä</h1>',
+            '<div class="nameshuffler-content">',
+            '    <div class="nameshuffler-inputarea">',
+            '        <div>Syötä tähän nimiä.</div>',
+            '        <ol class="nameshuffler-namelist">',
+            '            <li><input class="nameshuffler-textinput" type="text" /></li>',
+            '        </ol>',
+            '        <div class="nameshuffler-helparea"><em>Enter</em>=rivin lisäys,<br /><em>ctrl+backspace</em>=rivin poisto,<br /><em>nuoli ylös, nuoli alas</em>=liikkuminen</div>',
+            '    </div>',
+            '    <div class="nameshuffler-outputarea">',
+            '        <div class="nameshuffler-buttonarea"><label>Ryhmiä: <input class="nameshuffler-groupcount" type="number" min="1" max="50" value="4" /></label> <label>Vähimmäiskoko: <input class="nameshuffler-groupsize" type="number" min="1" max="200" value="0" /></label><button class="nameshuffler-groupshuffle">Sekoita</button></div>',
+            '        <div class="nameshuffler-resultarea"></div>',
+            '    </div>',
+            '</div>'
+        ].join('\n'),
+        htmlautoshuffle: [
             '<h1>Ryhmittelijä</h1>',
             '<div class="nameshuffler-content">',
             '    <div class="nameshuffler-inputarea">',

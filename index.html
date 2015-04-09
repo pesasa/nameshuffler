@@ -7,12 +7,18 @@
         <script type="text/javascript">
             jQuery(function(){
                 jQuery('#shuffler').nameshuffler();
+                jQuery('#shuffler2').nameshuffler({autoshuffle: true});
             });
         </script>
     </head>
     <body>
         <article>
+            <p>Käsin tehtävällä sekoituksella</p>
             <div id="shuffler"></div>
+            <br />
+            <br />
+            <p>Automaattisella sekoituksella</p>
+            <div id="shuffler2"></div>
         </article>
     </body>
 </html>
