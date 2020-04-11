@@ -30,6 +30,11 @@ Javascript:
 jQuery('#place').nameshuffler();
 ```
 
+If you want to shuffle groups automatically while writing names in the list, use autoshuffle:
+```javascript
+jQuery('#place').nameshuffler({autoshuffle: true});
+```
+
 License
 -------
 MIT
