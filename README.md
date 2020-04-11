@@ -1,7 +1,20 @@
+Groupper
+============
+
+Newer and more colorfull version of tool for dividing things, people, or anything
+in groups randomly.
+
+[Demo page](http://pesasa.github.io/nameshuffler)
+
+License
+---------
+MIT
+
+
 Nameshuffler
 ============
 
-A tool for randomly dividing things, people, whatever in groups. [Demo page](http://pesasa.github.io/nameshuffler)
+The older tool for randomly dividing things, people, whatever in groups.
 
 A jQuery-plugin. Requires jQuery and `jquery.nameshuffler.js`. Nothing else.
 
