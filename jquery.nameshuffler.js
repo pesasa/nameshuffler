@@ -17,11 +17,11 @@
         this.groupSize = 0;
         this.lastSet = 'groupCount';
     };
-    
+
     Shuffler.prototype.show = function(){
         this.place.html(Shuffler.templates.html);
     };
-    
+
     Shuffler.prototype.updateData = function(){
         var inputs = this.place.find('.nameshuffler-inputarea input.nameshuffler-textinput');
         this.names = [];
@@ -37,7 +37,7 @@
         this.place.find('.nameshuffler-outputarea input.nameshuffler-groupsize').val(this.groupSize);
         this.randomGroup();
     };
-    
+
     Shuffler.prototype.randomGroup = function(){
         var groups = [];
         var names = this.names.slice();
@@ -50,7 +50,7 @@
         };
         this.drawGroups(groups);
     };
-    
+
     Shuffler.prototype.drawGroups = function(groups){
         var results = this.place.find('.nameshuffler-outputarea .nameshuffler-resultarea');
         results.empty();
@@ -67,7 +67,7 @@
             results.append(groupbox);
         };
     };
-    
+
     Shuffler.prototype.initHandlers = function() {
         var shuff = this;
         this.place.on('keyup', '.nameshuffler-namelist li input.nameshuffler-textinput', function(event){
@@ -115,24 +115,24 @@
             shuff.updateData();
         });
     };
-    
+
     Shuffler.prototype.addField = function(index){
         var listitems = this.place.find('.nameshuffler-namelist > li');
         listitems.eq(index).after('<li><input class="nameshuffler-textinput" type="text" /></li>');
         var listitems = this.place.find('.nameshuffler-namelist > li');
         listitems.eq(index + 1).find('input.nameshuffler-textinput').last().focus();
     }
-    
+
     Shuffler.prototype.setAttrs = function() {
         this.place.addClass('nameshuffler-wrapper');
     };
-    
+
     Shuffler.prototype.setStyles = function() {
         if ($('head style#nameshuffler-styles').length === 0) {
             $('head').append('<style id="nameshuffler-styles" type="text/css">' + Shuffler.style + '</style>');
         };
     };
-    
+
     Shuffler.style = [
         '.nameshuffler-wrapper {border: 1px solid #777; border-radius: 4px; padding: 0.5em; background-color: #eee;}',
         '.nameshuffler-wrapper .nameshuffler-content {display: flex; flex-flow: col nowrap; align-items: stretch;}',
@@ -145,7 +145,7 @@
         '.nameshuffler-wrapper .nameshuffler-helparea {font-size: 80%;}',
         '@media print {.nameshuffler-wrapper .nameshuffler-inputarea, .nameshuffler-wrapper .nameshuffler-buttonarea, .nameshuffler-wrapper .nameshuffler-helparea, .nameshuffler-wrapper > h1 {display: none;} .nameshuffler-wrapper .nameshuffler-outputarea {border-left: none;} .nameshuffler-wrapper .nameshuffler-groupset {box-shadow: none;}}'
     ].join('\n');
-    
+
     Shuffler.templates = {
         html: [
             '<h1>Ryhmittelijä</h1>',
@@ -170,7 +170,7 @@
             '</div>'
         ].join('\n')
     }
-    
+
     // jQuery-plugin
     $.fn.nameshuffler = function(options) {
         if (methods[options]){
@@ -182,7 +182,7 @@
             return this;
         }
     };
-    
+
     var methods = {
         init: function( options ) {
             return this.each(function(){
@@ -190,5 +190,5 @@
             });
         }
     };
-    
+
 })(jQuery);

@@ -2,17 +2,22 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+        <link rel="icon" href="groupper-icon.png" sizes="192x192" />
+        <link rel="apple-touch-icon-precomposed" href="groupper-icon.png" />
+        <meta name="msapplication-TileImage" content="groupper-icon.png" />
+        <meta name="theme-color" content="#800066"  />
+        <meta name="msapplication-navbutton-color" content="#800066"  />
+        <meta name="apple-mobile-web-app-status-bar-style" content="#800066"  />
+        <link rel="manifest" href="manifest.json" />
         <script type="text/javascript" src="jquery-1.11.2.min.js"></script>
-        <script type="text/javascript" src="jquery.nameshuffler.js"></script>
+        <script type="text/javascript" src="groupper.js?3"></script>
         <script type="text/javascript">
             jQuery(function(){
-                jQuery('#shuffler').nameshuffler();
+                const gr = new PSTools.Groupper($('body'));
             });
         </script>
     </head>
     <body>
-        <article>
-            <div id="shuffler"></div>
-        </article>
     </body>
 </html>
