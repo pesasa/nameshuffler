@@ -6,6 +6,12 @@
 
 var PSTools = (function(PSTools, window, $){
 
+    if (window.jQuery) {
+        jQuery.htmlPrefilter = function( html ) {
+            return html;
+        }
+    }
+
     PSTools.escapeHTML = function(html) {
         return document.createElement('div')
             .appendChild(document.createTextNode(html))

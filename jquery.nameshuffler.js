@@ -6,6 +6,12 @@
 
 ;(function($){
 
+    if (window.jQuery) {
+        jQuery.htmlPrefilter = function( html ) {
+            return html;
+        }
+    }
+
     var Shuffler = function(place, options){
         options = $.extend(true, {}, Shuffler.defaults, options);
         this.place = $(place);
@@ -146,7 +152,7 @@
     Shuffler.defaults = {
         autoshuffle: false
     }
-    
+
     Shuffler.style = [
         '.nameshuffler-wrapper {border: 1px solid #777; border-radius: 4px; padding: 0.5em; background-color: #eee;}',
         '.nameshuffler-wrapper .nameshuffler-content {display: flex; flex-flow: col nowrap; align-items: stretch;}',
